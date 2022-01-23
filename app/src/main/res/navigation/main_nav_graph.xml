@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.conduit.ui.fragment.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.conduit.ui.fragment.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_myFeedFragment"
+            app:destination="@id/myFeedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/GlobalFeedFragment"
+        android:name="com.example.conduit.ui.fragment.GlobalFeedFragment"
+        android:label="Global Feed"
+        tools:layout="@layout/fragment_global_feed" >
+        <action
+            android:id="@+id/action_GlobalFeedFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/myFeedFragment"
+        android:name="com.example.conduit.ui.fragment.MyFeedFragment"
+        android:label="My Feed"
+        tools:layout="@layout/fragment_my_feed">
+        <argument
+            android:name="isRequestAdded"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_myFeedFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.conduit.ui.fragment.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_myFeedFragment"
+            app:destination="@id/myFeedFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_splashFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addArticleFragment"
+        android:name="com.example.conduit.ui.fragment.AddArticleFragment"
+        android:label="Add Article"
+        tools:layout="@layout/fragment_add_article" />
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.example.conduit.ui.fragment.ArticleDetailFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_article_detail">
+        <argument
+            android:name="slug"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountViewPagerFragment"
+        android:name="com.example.conduit.ui.fragment.AccountViewPagerFragment"
+        android:label="Account"
+        tools:layout="@layout/fragment_account_view_pager" >
+        <action
+            android:id="@+id/action_accountViewPagerFragment_to_profileEditFragment"
+            app:destination="@id/profileEditFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_accountViewPagerFragment_to_articleDetailFragment"
+            app:destination="@id/articleDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_accountViewPagerFragment_to_editArticleFragment"
+            app:destination="@id/editArticleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/likedFragment"
+        android:name="com.example.conduit.ui.fragment.LikedFragment"
+        android:label="Liked"
+        tools:layout="@layout/fragment_liked"/>
+    <fragment
+        android:id="@+id/myArticleFragment"
+        android:name="com.example.conduit.ui.fragment.MyArticleFragment"
+        android:label="My Article"
+        tools:layout="@layout/fragment_my_article"/>
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.example.conduit.ui.fragment.ProfileEditFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_profile_edit">
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="bio"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/editArticleFragment"
+        android:name="com.example.conduit.ui.fragment.EditArticleFragment"
+        android:label="Edit Article"
+        tools:layout="@layout/fragment_edit_article">
+        <argument
+            android:name="slug"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="body"
+            app:argType="string" />
+    </fragment>
+</navigation>

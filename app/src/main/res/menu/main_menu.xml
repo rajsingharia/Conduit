@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myFeedFragment"
+        android:title="Feed"
+        android:icon="@drawable/ic_book" />
+
+    <item
+        android:id="@+id/GlobalFeedFragment"
+        android:title="Global"
+        android:icon="@drawable/ic_global"/>
+
+    <item
+        android:id="@+id/addArticleFragment"
+        android:title="Add"
+        android:icon="@drawable/ic_add_article" />
+
+    <item
+        android:id="@+id/accountViewPagerFragment"
+        android:title="Account"
+        android:icon="@drawable/ic_account" />
+
+</menu>

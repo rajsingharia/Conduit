@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/bottom_nav_bar_background.xml" value="0.26296296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/feed_round_corner_background.xml" value="0.2611111111111111" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/ic_add.xml" value="0.2611111111111111" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/ic_book.xml" value="0.26296296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/ic_edit_black.xml" value="0.24722222222222223" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/ic_global.xml" value="0.26296296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/ic_heart.xml" value="0.2611111111111111" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/ic_heart_not_liked.xml" value="0.2611111111111111" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/ic_send.xml" value="0.26851851851851855" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/drawable/tab_icon_color_selector.xml" value="0.2657407407407407" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/feed_list_round_edges_background.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_account.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_account_view_pager.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_add_article.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_article_detail.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_edit_article.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_global_feed.xml" value="0.13385416666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_liked.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_login.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_my_article.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_my_feed.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_profile_edit.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_register.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/fragment_splash.xml" value="0.13385416666666666" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/global_complain_row.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/global_feed_row.xml" value="0.21851851851851853" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/my_complain_row.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/my_feed_row.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/single_article_row.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/layout/single_comment_row.xml" value="0.259375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/Conduit/app/src/main/res/menu/main_menu.xml" value="0.259375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
