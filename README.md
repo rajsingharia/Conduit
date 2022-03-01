@@ -1,6 +1,6 @@
 # Conduit
 
-⚪ MVVM
+⚪ MVVM          
 ⚪ Dagger Hilt    
 ⚪ ViewModel    
 ⚪ Retrofit   
