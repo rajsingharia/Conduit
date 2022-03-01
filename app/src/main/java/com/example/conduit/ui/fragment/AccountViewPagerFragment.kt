@@ -62,14 +62,14 @@ class AccountViewPagerFragment : Fragment() {
 
     private fun setupUser() {
         authViewModel.currentUser.observe(requireActivity(),{
-            it?.let{ user->
-                this.user=user.data!!.user
+            it.data?.let{ user->
+                this.user=user!!.user!!
                 binding.accountProgressBar.visibility = View.GONE
-                binding.accountUserName.text = user.data!!.user.username
-                binding.accountBio.text = user.data.user.bio
+                binding.accountUserName.text = user!!.user!!.username
+                binding.accountBio.text = user.user!!.bio
                 Glide
                     .with(requireContext())
-                    .load(user.data.user.image)
+                    .load(user.user.image)
                     .placeholder(R.drawable.ic_person)
                     .circleCrop()
                     .into(binding.accountUserProfilePic)

@@ -6,6 +6,7 @@ import androidx.room.Query
 import com.example.conduit.data.local.offlineModel.OfflineArticle
 import com.example.conduit.data.local.offlineModel.OfflineArticleResponse
 import com.example.conduit.model.Author
+import com.example.conduit.model.SingleArticleResponseBySlug
 import com.example.conduit.model.UserX
 
 @Dao
@@ -26,6 +27,12 @@ interface AuthDao {
 
     @Query("SELECT * FROM offlinearticle INNER JOIN author ON offlinearticle.username = author.username WHERE offlinearticle.type = :type ORDER BY offlinearticle.createdAt ")
     suspend fun getInsertedArticles(type:String) : List<OfflineArticleResponse>
+
+    @Query("DELETE FROM offlinearticle WHERE type=:type AND slug=:slug")
+    suspend fun deleteSpecificArticle(type: String,slug: String)
+
+    @Query("DELETE FROM offlinearticle WHERE type=:type")
+    suspend fun deleteArticle(type: String)
 
 
 }

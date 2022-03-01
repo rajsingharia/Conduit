@@ -7,6 +7,10 @@
     android:background="@color/background_white"
     tools:context=".ui.fragment.GlobalFeedFragment">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/global_recycler_view_swipe_to_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/global_recycler_view"
         android:paddingBottom="70dp"
@@ -17,6 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/global_progress_bar"

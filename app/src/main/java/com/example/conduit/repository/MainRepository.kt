@@ -27,7 +27,7 @@ class MainRepository @Inject constructor(
             val response = apiService.getCurrentUser(token)
             if(response.isSuccessful){
                 response.body()?.let{
-                    authDao.insertUser(it.user)
+                    authDao.insertUser(it.user!!)
                     val userResponse = authDao.getUser()
                     Log.d("database",userResponse.username)
                     return NetworkResult.Success(UserResponse(userResponse))
@@ -52,21 +52,58 @@ class MainRepository @Inject constructor(
     suspend fun getMyFeed(token: String?) :NetworkResult<ArticlesResponse> = returnArticleResponse(token,MYFEED)
 
 
-
     suspend fun signUpUser(userRequestRegister:UserRequestRegister) = apiService.signUpUser(userRequestRegister)
     suspend fun loginUser(userRequestLogin: UserRequestLogin) = apiService.loginUser(userRequestLogin)
     suspend fun updateUser(token: String?,user: UpdateRequestUser) = apiService.upDateUser(token,user)
     suspend fun createArticle(token: String?, articleRequest: ArticleRequest) = apiService.createArticle(token, articleRequest)
-    suspend fun getSingleArticleBySlug(slug:String?,token: String?) = apiService.getSingleArticleBySlug(slug,token)
-    suspend fun getCommentForArticle(slug: String?,token: String?) = apiService.getCommentForArticle(slug, token)
+    suspend fun getSingleArticleBySlug(slug:String?,token: String?) :NetworkResult<Response<SingleArticleResponseBySlug>> {
+        return try {
+            val response = apiService.getSingleArticleBySlug(slug,token)
+            NetworkResult.Success(response)
+        } catch (e :IOException){
+            NetworkResult.Error("Server Not Found")
+        }
+
+    }
+    suspend fun getCommentForArticle(slug: String?,token: String?) : NetworkResult<Response<CommentResponse>>{
+        return try {
+            val response = apiService.getCommentForArticle(slug, token)
+            NetworkResult.Success(response)
+        }
+        catch (e :IOException){
+            NetworkResult.Error("Server Not Found")
+        }
+
+    }
     suspend fun favouriteArticle(slug: String?, token: String?) = apiService.favouriteArticle(slug, token)
-    suspend fun unFavouriteArticle(slug: String?,token: String?) = apiService.unFavouriteArticle(slug, token)
+    suspend fun unFavouriteArticle(slug: String?,token: String?) : Response<FavouriteResponse>{
+        val response = apiService.unFavouriteArticle(slug, token)
+        try {
+            if (slug != null) {
+                authDao.deleteSpecificArticle(FAVOURITE,slug)
+            }
+        }
+        catch (e: IOException){
+
+        }
+        return response
+    }
     suspend fun updateArticle(slug: String?,token: String?,articleRequest: ArticleRequest) = apiService.updateArticle(slug, token, articleRequest)
     suspend fun deleteArticle(slug: String?,token: String?) = apiService.deleteArticle(slug, token)
     suspend fun postComment(slug: String?,token: String?,commentRequest: CommentRequest) = apiService.postComment(slug,token, commentRequest)
     suspend fun deleteComment(slug: String?,commentId:Int,token: String?) = apiService.deleteComment(slug, commentId,token)
     suspend fun followUser(celebName: String?,token: String?,user: UserXX) = apiService.followUser(celebName, token, user)
-    suspend fun unFollowUser(celebName: String?,token: String?) = apiService.unFollowUser(celebName, token)
+
+    suspend fun unFollowUser(celebName: String?,token: String?) : Response<FollowResponse>{
+        val response = apiService.unFollowUser(celebName, token)
+        try {
+            authDao.deleteArticle(MYFEED)
+        }
+        catch (e: IOException){
+
+        }
+        return response
+    }
 
 
     private suspend fun returnArticleResponse(token: String?,type: String,limit: Int?=null,author: String?=null):NetworkResult<ArticlesResponse>{
@@ -143,7 +180,8 @@ class MainRepository @Inject constructor(
     }
 
     private fun getTagsFromOfflineInsertedData(article: OfflineArticleResponse): List<String> {
-        return article.tagList.split(",").toList()
+        val list = article.tagList.split(",").toList()
+        return list.subList(0,list.size-1)
     }
 
     private fun getTagsForOfflineInsert(article: Article): String {

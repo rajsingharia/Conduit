@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -16,6 +18,8 @@
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:navGraph="@navigation/main_nav_graph" />
+
+
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -28,6 +32,20 @@
         app:titleTextColor="@color/white"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Offline"
+        android:id="@+id/offlineTextView"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="#E91E63"/>
 
 
 

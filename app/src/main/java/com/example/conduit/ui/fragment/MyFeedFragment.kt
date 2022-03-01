@@ -41,6 +41,7 @@ class MyFeedFragment : Fragment() {
         binding.myFeedRecyclerView.adapter = adapter
         feedViewModel.myFeed.observe(requireActivity(),{
             it.data?.let{ response->
+                binding.myFeedRecyclerViewSwipeToRefresh.isRefreshing = false
                 when(it){
                     is NetworkResult.Loading -> {
                         binding.myFeedProgressBar.visibility = View.VISIBLE
@@ -75,6 +76,10 @@ class MyFeedFragment : Fragment() {
                 feedViewModel.getMyFeed("Token $token")
             }
         })
+
+        binding.myFeedRecyclerViewSwipeToRefresh.setOnRefreshListener {
+            feedViewModel.getMyFeed("Token $token")
+        }
 
     }
 

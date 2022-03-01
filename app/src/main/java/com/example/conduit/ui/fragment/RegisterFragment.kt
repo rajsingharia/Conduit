@@ -50,9 +50,15 @@ class RegisterFragment : Fragment() {
 
         }
 
+        authViewModel.error.observe(requireActivity(),{
+            it?.let{
+                Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+            }
+        })
+
         authViewModel.signupUser.observe(requireActivity(),{
             it?.let { user->
-                OfflineData(requireActivity()).putUserToken(user.user.token)
+                OfflineData(requireActivity()).putUserToken(user.user!!.token)
                 Toast.makeText(requireContext(),"User Registered In",Toast.LENGTH_SHORT).show()
                 val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
                 findNavController().navigate(action)

@@ -10,7 +10,7 @@ interface ConduitApiService {
     @GET("articles")
     suspend fun getArticles(
         @Header ("Authorization") token:String?,
-        @Query ("limit") limit:Int? = null
+        @Query ("limit") limit:Int? = 40
     ) : Response<ArticlesResponse>
 
 

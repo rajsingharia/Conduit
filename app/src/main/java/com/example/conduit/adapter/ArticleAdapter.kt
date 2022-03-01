@@ -99,7 +99,7 @@ class ArticleAdapter(type:String?): RecyclerView.Adapter<ArticleAdapter.Employee
                 allTag += s
                 allTag += " , "
             }
-            tags.text = allTag
+            tags.text = allTag.substring(0,allTag.length-2)
 
             heart.setOnClickListener {
                 onLikeClickListener?.let{ it(item) }

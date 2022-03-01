@@ -1,69 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     android:background="@color/background_white"
     tools:context=".ui.fragment.AddArticleFragment">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/article_description"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/article_description_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="Description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:inputType="textLongMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/article_title" />
-
+        app:layout_constraintTop_toBottomOf="@+id/article_title_layout">
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/article_title"
-        android:layout_width="0dp"
+        android:id="@+id/article_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/article_title_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="15dp"
         android:hint="Title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent">
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/article_body"
+        android:id="@+id/article_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/article_tag_list"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="365dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/article_single_tag_layout" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/article_body_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="Body"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:inputType="textLongMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/article_description" />
-
+        app:layout_constraintTop_toBottomOf="@+id/article_description_layout">
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/article_tag_list"
+        android:id="@+id/article_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/article_single_tag_layout"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:hint="Tag List"
+        android:layout_marginTop="56dp"
+        android:hint="Tag"
         android:inputType="textAutoComplete"
         app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/article_body" />
+        app:layout_constraintTop_toBottomOf="@+id/article_body_layout">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/article_single_tag"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/article_tag_add_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/ic_add"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/article_single_tag_layout"
+        app:layout_constraintStart_toEndOf="@+id/article_single_tag_layout"
+        app:layout_constraintTop_toTopOf="@+id/article_single_tag_layout" />
 
     <Button
         android:id="@+id/addArticle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/article_body" />
+        app:layout_constraintTop_toBottomOf="@+id/article_tag_list" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -12,6 +12,7 @@ import com.example.conduit.data.remote.NetworkResult
 import com.example.conduit.databinding.FragmentMyArticleBinding
 import com.example.conduit.ui.MainActivity
 import com.example.conduit.util.Constants.ARTICLE_TYPE_MY
+import com.example.conduit.util.Constants.NUMBER_OF_ARTICLES
 import com.example.conduit.viewmodel.FeedViewModel
 
 
@@ -40,6 +41,7 @@ class MyArticleFragment : Fragment() {
         binding.myArticleRecyclerView.adapter = adapter
         feedViewModel.myArticle.observe(requireActivity(),{
             it.data?.let{ response->
+                binding.myArticleRecyclerViewSwipeToRefresh.isRefreshing = false
                 when(it){
                     is NetworkResult.Error -> {
                         binding.myArticlesProgressBar.visibility = View.GONE
@@ -59,7 +61,7 @@ class MyArticleFragment : Fragment() {
 
         feedViewModel.favourted.observe(requireActivity(),{
             it.let{
-                feedViewModel.getMyArticles("Token $token",10,authorname)
+                feedViewModel.getMyArticles("Token $token",NUMBER_OF_ARTICLES,authorname)
             }
         })
 
@@ -83,6 +85,10 @@ class MyArticleFragment : Fragment() {
             val slug = articleClicked.slug
             val liked = articleClicked.favorited
             favouriteArticle(slug,liked)
+        }
+
+        binding.myArticleRecyclerViewSwipeToRefresh.setOnRefreshListener {
+            feedViewModel.getMyArticles("Token $token",NUMBER_OF_ARTICLES,authorname)
         }
 
     }

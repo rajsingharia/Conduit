@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class SplashFragment : Fragment() {
 
     private lateinit var binding : FragmentSplashBinding
-    private lateinit var token:String
+    private var token: String?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        token = (activity as MainActivity).token!!
+        token = (activity as MainActivity).token
         lifecycleScope.launch {
 
             while(true){

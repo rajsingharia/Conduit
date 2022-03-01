@@ -107,6 +107,7 @@ class ArticleDetailFragment : Fragment() {
 
         feedViewModel.followResponse.observe(requireActivity(),{
             it?.let{
+                binding.articleDetailProgressBar.visibility = View.GONE
                 articleDetailViewModel.getArticleBySlug(slug,"Token $token")
             }
         })
@@ -208,6 +209,13 @@ class ArticleDetailFragment : Fragment() {
             .load(article.article.author.image)
             .placeholder(R.drawable.ic_person)
             .into(binding.articleDetailProfilePic)
+
+        var allTag = ""
+        for(s in article.article.tagList){
+            allTag += s
+            allTag += " , "
+        }
+        binding.articleDetailTagList.text = allTag.substring(0,allTag.length-2)
 
     }
 

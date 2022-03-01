@@ -7,15 +7,21 @@
     android:background="@color/background_white"
     tools:context=".ui.fragment.LikedFragment">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/favourited_article_recycler_view_swipe_to_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favourited_article_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="70dp"
         tools:listitem="@layout/single_article_row"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/liked_article_progress_bar"

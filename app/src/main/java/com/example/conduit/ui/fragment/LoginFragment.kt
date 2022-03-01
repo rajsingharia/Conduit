@@ -15,6 +15,7 @@ import com.example.conduit.ui.MainActivity
 import com.example.conduit.util.OfflineData
 import com.example.conduit.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.time.Duration.Companion.hours
 
 
 class LoginFragment : Fragment() {
@@ -42,10 +43,17 @@ class LoginFragment : Fragment() {
             authViewModel.loginUser(userRequestLogin)
         }
 
+        authViewModel.error.observe(requireActivity(),{
+            it?.let{
+                Toast.makeText(requireContext(),it,Toast.LENGTH_SHORT).show()
+            }
+        })
+
         authViewModel.loginUser.observe(requireActivity(),{
             it?.let{ user->
-                OfflineData(requireActivity()).putUserToken(user.user.token)
-                Toast.makeText(requireContext(),"User Logged In ${user.user.token}",Toast.LENGTH_SHORT).show()
+                OfflineData(requireActivity()).putUserToken(user.user!!.token)
+                (activity as MainActivity).token = user.user.token
+                //Toast.makeText(requireContext(),"User Logged In ${user.user.token}",Toast.LENGTH_SHORT).show()
                 val action = LoginFragmentDirections.actionLoginFragmentToMyFeedFragment()
                 findNavController().navigate(action)
             }

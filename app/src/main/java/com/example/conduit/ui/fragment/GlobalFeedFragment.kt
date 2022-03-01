@@ -43,6 +43,7 @@ class GlobalFeedFragment : Fragment() {
 
         feedViewModel.globalArticle.observe(requireActivity(),{
             it?.let{ response->
+                binding.globalRecyclerViewSwipeToRefresh.isRefreshing = false
                 when(response){
                     is NetworkResult.Loading -> {
                         binding.globalProgressBar.visibility = View.VISIBLE
@@ -86,9 +87,14 @@ class GlobalFeedFragment : Fragment() {
 
         feedViewModel.favourted.observe(requireActivity(),{
             it.let{
+                binding.globalProgressBar.visibility = View.GONE
                 feedViewModel.getArticles("Token $token")
             }
         })
+
+        binding.globalRecyclerViewSwipeToRefresh.setOnRefreshListener {
+            feedViewModel.getArticles("Token $token")
+        }
 
     }
 

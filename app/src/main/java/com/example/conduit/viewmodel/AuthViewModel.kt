@@ -1,4 +1,5 @@
 package com.example.conduit.viewmodel
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,11 +20,15 @@ class AuthViewModel @Inject constructor(
     val loginUser = MutableLiveData<UserResponse>()
     val currentUser = MutableLiveData<NetworkResult<UserResponse>>()
     val updateUser = MutableLiveData<UserResponse>()
+    val error = MutableLiveData<String>()
 
     fun signUpUser(userRequestRegister: UserRequestRegister) = viewModelScope.launch {
         repository.signUpUser(userRequestRegister).let {
             if(it.isSuccessful){
                 signupUser.postValue(it.body())
+            }
+            else if(it.code() == 422){
+                error.postValue("username or email is already taken")
             }
         }
     }
@@ -33,20 +38,16 @@ class AuthViewModel @Inject constructor(
             if(it.isSuccessful){
                 loginUser.postValue(it.body())
             }
+            else if(it.code() == 403){
+                error.postValue("email or password is invalid")
+            }
         }
     }
 
     fun getCurrentUser(token:String?) = viewModelScope.launch {
         currentUser.value = NetworkResult.Loading()
         repository.getCurrentUser(token).let{
-            when(it){
-                is NetworkResult.Success -> {
-                    currentUser.value = NetworkResult.Success(it.data!!)
-                }
-                is NetworkResult.Error -> {
-                    currentUser.value = NetworkResult.Error(it.message,it.data)
-                }
-            }
+            currentUser.value = it
         }
     }
 
