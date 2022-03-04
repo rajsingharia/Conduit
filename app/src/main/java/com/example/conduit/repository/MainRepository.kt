@@ -22,6 +22,8 @@ class MainRepository @Inject constructor(
 
     suspend fun getArticles(token: String?) : NetworkResult<ArticlesResponse> = returnArticleResponse(token,GLOBAL)
 
+    suspend fun getArticleByTag(tag:String) = apiService.getArticleByTag(tag)
+
     suspend fun getCurrentUser(token:String?): NetworkResult<UserResponse>{
         try {
             val response = apiService.getCurrentUser(token)
@@ -94,6 +96,7 @@ class MainRepository @Inject constructor(
     suspend fun deleteComment(slug: String?,commentId:Int,token: String?) = apiService.deleteComment(slug, commentId,token)
     suspend fun followUser(celebName: String?,token: String?,user: UserXX) = apiService.followUser(celebName, token, user)
 
+    suspend fun getTags() = apiService.getTags()
     suspend fun unFollowUser(celebName: String?,token: String?) : Response<FollowResponse>{
         val response = apiService.unFollowUser(celebName, token)
         try {

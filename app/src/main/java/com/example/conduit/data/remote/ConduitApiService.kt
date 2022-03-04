@@ -35,6 +35,10 @@ interface ConduitApiService {
         @Header ("Authorization") token:String?,
     ) : Response<ArticlesResponse>
 
+    @GET("articles")
+    suspend fun getArticleByTag(
+        @Query("tag") tag:String?
+    ) : Response<ArticlesResponse>
 
 
     @GET("articles/{slug}")
@@ -50,6 +54,8 @@ interface ConduitApiService {
         @Path("slug") slug:String?,
         @Header ("Authorization") token:String?
     ) : Response<CommentResponse>
+
+
 
 
     @POST("articles")
@@ -139,5 +145,9 @@ interface ConduitApiService {
         @Header ("Authorization") token:String?,
         @Body user: UpdateRequestUser
     ) : Response<UserResponse>
+
+
+    @GET("tags")
+    suspend fun getTags() : Response<TagsResponse>
 
 }

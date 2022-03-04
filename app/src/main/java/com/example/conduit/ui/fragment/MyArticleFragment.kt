@@ -39,14 +39,14 @@ class MyArticleFragment : Fragment() {
         feedViewModel = (activity as MainActivity).feedViewModel
         binding.myArticleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.myArticleRecyclerView.adapter = adapter
-        feedViewModel.myArticle.observe(requireActivity(),{
-            it.data?.let{ response->
+        feedViewModel.myArticle.observe(requireActivity()) {
+            it.data?.let { response ->
                 binding.myArticleRecyclerViewSwipeToRefresh.isRefreshing = false
-                when(it){
+                when (it) {
                     is NetworkResult.Error -> {
                         binding.myArticlesProgressBar.visibility = View.GONE
                         adapter.submitList(response.articles)
-                        Toast.makeText(requireContext(),it.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     is NetworkResult.Success -> {
                         binding.myArticlesProgressBar.visibility = View.GONE
@@ -57,13 +57,13 @@ class MyArticleFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
 
-        feedViewModel.favourted.observe(requireActivity(),{
-            it.let{
-                feedViewModel.getMyArticles("Token $token",NUMBER_OF_ARTICLES,authorname)
+        feedViewModel.favourted.observe(requireActivity()) {
+            it.let {
+                feedViewModel.getMyArticles("Token $token", NUMBER_OF_ARTICLES, authorname)
             }
-        })
+        }
 
         adapter.setOnRowClickListener { articleClicked->
             val slug = articleClicked.slug

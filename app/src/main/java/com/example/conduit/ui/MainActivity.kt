@@ -5,12 +5,14 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.conduit.R
 import com.example.conduit.data.remote.NetworkResult
 import com.example.conduit.databinding.ActivityMainBinding
+import com.example.conduit.ui.fragment.FilterFragmentDirections
 import com.example.conduit.util.Constants.NUMBER_OF_ARTICLES
 import com.example.conduit.util.NetworkConnectivity
 import com.example.conduit.util.OfflineData
@@ -49,6 +51,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setupWithNavController(controller)
 
+        binding.filterButton.setOnClickListener {
+            val action = FilterFragmentDirections.actionGlobalFilterFragment()
+            controller.navigate(action)
+        }
+
 
         //Top level destinations
         val appBarConfiguration = AppBarConfiguration(
@@ -74,41 +81,61 @@ class MainActivity : AppCompatActivity() {
             getUserFeed(tokenFormat)
         }
 
-        authViewModel.currentUser.observe(this,{
-            it?.let{
-                when(it){
+        authViewModel.currentUser.observe(this) {
+            it?.let {
+                when (it) {
                     is NetworkResult.Success -> {
                         OfflineData(this).putUserToken(it.data!!.user!!.token)
                         token = OfflineData(this).getUserToken()
-                        feedViewModel.getMyArticles("Token $token",NUMBER_OF_ARTICLES,it.data.user!!.username)
+                        feedViewModel.getMyArticles(
+                            "Token $token",
+                            NUMBER_OF_ARTICLES,
+                            it.data.user!!.username
+                        )
                         username = it.data.user!!.username
                         email = it.data.user.email
-                        feedViewModel.getMyFavouriteArticles("Token $token",NUMBER_OF_ARTICLES,it.data.user.username)
+                        feedViewModel.getMyFavouriteArticles(
+                            "Token $token",
+                            NUMBER_OF_ARTICLES,
+                            it.data.user.username
+                        )
                     }
                     is NetworkResult.Error -> {
-                        Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                         token = OfflineData(this).getUserToken()
-                        feedViewModel.getMyArticles("Token $token",NUMBER_OF_ARTICLES,it.data!!.user!!.username)
+                        feedViewModel.getMyArticles(
+                            "Token $token",
+                            NUMBER_OF_ARTICLES,
+                            it.data!!.user!!.username
+                        )
                         username = it.data.user!!.username
                         email = it.data.user.email
-                        feedViewModel.getMyFavouriteArticles("Token $token",NUMBER_OF_ARTICLES,it.data.user.username)
+                        feedViewModel.getMyFavouriteArticles(
+                            "Token $token",
+                            NUMBER_OF_ARTICLES,
+                            it.data.user.username
+                        )
                     }
                 }
 
             }
-        })
+        }
 
-        networkConnectivity.observe(this,{
-            it?.let{ online->
-                if(!online){
-                    binding.offlineTextView.startAnimation(AnimationUtils.loadAnimation(this,R.anim.slide_down))
+        networkConnectivity.observe(this) {
+            it?.let { online ->
+                if (!online) {
+                    binding.offlineTextView.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            this,
+                            R.anim.slide_down
+                        )
+                    )
                     binding.offlineTextView.visibility = View.VISIBLE
-                }
-                else{
+                } else {
                     binding.offlineTextView.visibility = View.GONE
-                    if(token!=null){
+                    if (token != null) {
                         //If previously user exists
-                        val tokenFormat="Token $token"
+                        val tokenFormat = "Token $token"
                         fetchArticles(tokenFormat)
                         getCurrentUser(tokenFormat)
                         getUserFeed(tokenFormat)
@@ -116,7 +143,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
-        })
+        }
 
 
 
@@ -127,6 +154,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.myFeedFragment, R.id.GlobalFeedFragment,R.id.accountViewPagerFragment,R.id.addArticleFragment -> {
                     binding.bottomNavigationView.visibility = View.VISIBLE
                     binding.toolbar.visibility = View.VISIBLE
+                }
+
+                R.id.filterFragment -> {
+                    binding.bottomNavigationView.visibility =  View.GONE
                 }
 
                 else -> {

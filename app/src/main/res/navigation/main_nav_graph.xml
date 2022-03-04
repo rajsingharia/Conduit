@@ -161,4 +161,16 @@
             android:name="body"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.example.conduit.ui.fragment.FilterFragment"
+        android:label="Filter"
+        tools:layout="@layout/fragment_filter" />
+    <action
+        android:id="@+id/action_global_filterFragment"
+        app:destination="@id/filterFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_enter_anim" />
 </navigation>

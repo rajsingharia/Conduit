@@ -31,7 +31,15 @@
         app:title="Conduit"
         app:titleTextColor="@color/white"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <ImageView
+            android:id="@+id/filterButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_filter"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="end" />
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
         android:layout_width="match_parent"
@@ -46,6 +54,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:background="#E91E63"/>
+
 
 
 
